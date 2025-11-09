@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration
 const allowedOrigins = [
-  'https://taxi-booking-app-nine.vercel.app',  // Replace with your Vercel URL
-  'http://localhost:5173'              // For local development
+  'https://taxi-booking-app-nine.vercel.app',
+  'http://localhost:5173'
 ];
 
 app.use(cors({
@@ -34,7 +34,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Request logging middleware (development)
+// Request logging middleware
 if (process.env.NODE_ENV === 'development') {
   app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Health check route
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     success: true,
     message: 'Taxi Booking API is running',
     version: '1.0.0'
@@ -52,30 +52,30 @@ app.get('/', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
-  res.json({ 
+  res.json({
     success: true,
-    status: 'OK', 
-    timestamp: new Date().toISOString() 
+    status: 'OK',
+    timestamp: new Date().toISOString()
   });
 });
 
-// API Routes (we'll add these next)
+// API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicles'));
 app.use('/api/bookings', require('./routes/bookings'));
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     success: false,
-    error: 'Route not found' 
+    error: 'Route not found'
   });
 });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack);
-  res.status(500).json({ 
+  res.status(500).json({
     success: false,
     error: 'Something went wrong!',
     message: process.env.NODE_ENV === 'development' ? err.message : undefined
