@@ -11,8 +11,26 @@ const db = require('./config/db');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors());
+// CORS configuration
+const allowedOrigins = [
+  'https://taxi-booking-app-nine.vercel.app',  // Replace with your Vercel URL
+  'http://localhost:5173'              // For local development
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -45,7 +63,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicles'));
 app.use('/api/bookings', require('./routes/bookings'));
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2MjU4NDI3MiwiZXhwIjoxNzYyNjcwNjcyfQ.aT7nOF3uJNjC7VSejTqVukprAtoR_tDXFrs9zsUuhBg
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({ 

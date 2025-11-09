@@ -1,10 +1,12 @@
 # Dependencies
 node_modules/
-*/node_modules/
+client/node_modules/
+server/node_modules/
 
 # Environment variables
 .env
-*/.env
+client/.env
+server/.env
 
 # Logs
 *.log
@@ -22,3 +24,10 @@ Thumbs.db
 # Build files
 dist/
 build/
+client/dist/
+client/build/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
