@@ -1,9 +1,6 @@
 🚖 Taxi Booking Web Application
 A modern, full-stack taxi booking platform with real-time fare estimation, vehicle management, and a premium user interface.
 
-[![Live Demo](https://img.shields.io
-[![Backend API](https://img.shields.iohttps://img.shields.io/badge/GitHub-Repository
-
 🌐 Live Application
 Frontend: https://taxi-booking-app-nine.vercel.app
 
