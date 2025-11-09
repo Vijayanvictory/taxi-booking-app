@@ -91,8 +91,6 @@ Image Storage: Cloudinary
 
 Version Control: GitHub
 
-📁 Project Structure
-text
 taxi-booking-app/
 ├── client/                    # Frontend (React)
 │   ├── public/
@@ -144,6 +142,7 @@ taxi-booking-app/
 │
 ├── .gitignore
 └── README.md
+
 🚀 Local Development Setup
 Prerequisites
 Node.js (v16 or higher)
