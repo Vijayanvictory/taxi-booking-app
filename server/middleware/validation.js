@@ -11,7 +11,7 @@ const validateBooking = [
   body('estimated_fare').isFloat({ min: 0 }).withMessage('Valid fare is required'),
   body('user_name').trim().notEmpty().isLength({ min: 2, max: 100 }).withMessage('Name must be 2-100 characters').escape(),
   body('user_mobile').matches(/^[0-9]{10}$/).withMessage('Mobile number must be 10 digits'),
-  body('user_email').optional().isEmail().withMessage('Invalid email format').normalizeEmail()
+  body('user_email').optional({ checkFalsy: true }).isEmail().withMessage('Invalid email format').normalizeEmail()
 ];
 
 // Validation rules for vehicles
